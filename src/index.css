@@ -1,0 +1,35 @@
+body {
+  color: white;
+  font-family: "alan sans",sans-serif;
+  text-align: center;
+  
+  
+}
+
+.homepage{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.button{
+  background-color:#62C370 ;
+  padding: 20px;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.dark{
+  padding: 10px;
+  border-radius:12px ;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  transition: 0.5s ease;
+  border: none;
+  opacity: .8;
+}

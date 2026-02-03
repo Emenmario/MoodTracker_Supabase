@@ -1,0 +1,142 @@
+body {
+  font-family: "alan sans", sans-serif;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.list {
+  display: flex;
+
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+}
+.filter{
+
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+filter.input{
+  display: block;
+}
+
+.third {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 10px; 
+  width: 100%;
+}
+
+.box {
+  position: relative;
+  width: 250px;
+  min-height: 150px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+.box h1 {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+.box p {
+  margin: 4px 0;
+  line-height: 1.4;
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.box span {
+  color: #ffffff;
+  font-size: 0.85rem;
+  margin-right: 5px;
+}
+
+.x {
+  font-size: smaller;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: "alan sans";
+  width: auto;
+  height: auto;
+  padding: 4px;
+  color: pink;
+  cursor: pointer;
+}
+
+.bruh {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.bruh button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bruh button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.bruh div {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #fff;
+  line-height: 1.4;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.third::-webkit-scrollbar {
+  height: 8px;
+}
+
+.third::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+.stat{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
