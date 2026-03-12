@@ -1,8 +1,12 @@
-import React from 'react'
+import React ,{useContext} from 'react'
 import {Link} from "react-router-dom"
 import "./List.css"
 import Box from "./Box"
+import {Appcontext} from "./App"
+
 const List = () => {
+
+  const {on,setOn}=useContext(Appcontext)
 
   function handleFilter(e){
       const filtered=e.target.value==="All"?original:original.filter(mood=>mood.mood===e.target.value)
@@ -29,7 +33,7 @@ const List = () => {
             )
     })
   return (
-    <div className='list'>
+    <div style={{backgroundColor:on&&"white", transition: "all 0.5s ease"}}className='list'>
        <div className='filter'>
       <p>filter by Mood</p>
         <label><input onClick={handleFilter} name='mood' value="All" type='radio'/>All</label>
@@ -45,8 +49,8 @@ const List = () => {
         {rendered} 
            </div>
           
-    <div className='stat'>
-      <Link className="b" to="/Statistics">View statistics 📊</Link>
+   <div className='stat'>
+      <Link style={{backgroundColor:on?"black":"#ffffff",padding:"5px 10px",borderRadius:"10px",opacity:on?"1":"0.8"}} className="b" to="/Statistics">View statistics 📊</Link>
     </div>
 
     </div>

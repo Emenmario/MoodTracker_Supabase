@@ -66,3 +66,47 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .homepage p {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .button, .b {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .homepage div[style*="display:flex"] {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .homepage p {
+    font-size: 0.9rem;
+    max-width: 95%;
+  }
+
+  .button, .b {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+
+  .homepage div[style*="display:flex"] {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -49,7 +49,7 @@ const Form = () => {
       <form  onSubmit={handleSubmit}>
         <div style={{backgroundColor:on&&"#e1e1e11c"}} className='form'>
        
-  <p style={{display:"block"}}>How are you feeling rn?</p>
+  <p style={{display:"block"}}>How are you feeling right now?</p>
 
   <div style={{display:"flex",gap:"10px"}}>
       <input 
@@ -82,7 +82,7 @@ const Form = () => {
           <button style={{marginRight:"10px"}} className='button'>Done</button>
           <Link to="/list" className='b'>mood history-></Link>
         </div>
-      </form>.
+      </form>
 
     </div>
   );
