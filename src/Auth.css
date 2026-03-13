@@ -1,0 +1,165 @@
+/* Auth.css */
+
+/* Container */
+/* Make body full height and dark */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #1c1c1c; /* Dark background */
+  color: #f5f5f5;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Auth container centers vertically and horizontally */
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 25px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Keep rest of your existing styles (inputs, buttons, etc.) */
+.auth-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 30px 25px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #f5f5f5;
+  transition: all 0.3s ease;
+}
+
+/* Heading */
+.auth-container h2 {
+  margin-bottom: 25px;
+  color: #ffd166;
+  text-shadow: 1px 2px 6px rgba(0,0,0,0.6);
+  font-size: 2rem;
+}
+
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-form input {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #f5f5f5;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+}
+
+/* Buttons */
+.auth-form button,
+.mode-toggle,
+.guest-btn {
+  margin-top: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Primary button (login/signup) */
+.auth-form button {
+  background-color: #06d6a0;
+  color: #1c1c1c;
+}
+
+.auth-form button:hover {
+  background-color: #05b38f;
+  transform: translateY(-2px);
+}
+
+/* Mode toggle */
+.mode-toggle {
+  background-color: transparent;
+  color: #ffd166;
+}
+
+.mode-toggle:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Guest mode button */
+.guest-btn {
+  background-color: rgba(255, 209, 102, 0.2);
+  color: #ffd166;
+  margin-top: 20px;
+}
+
+.guest-btn:hover {
+  background-color: rgba(255, 209, 102, 0.4);
+  color: #1c1c1c;
+  transform: translateY(-2px);
+}
+
+/* Separator line */
+.auth-container hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .auth-container {
+    margin: 3rem 15px;
+    padding: 25px 20px;
+  }
+
+  .auth-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .auth-form input,
+  .auth-form button,
+  .mode-toggle,
+  .guest-btn {
+    font-size: 0.95rem;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    margin: 2rem 10px;
+    padding: 20px 15px;
+  }
+
+  .auth-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .auth-form input,
+  .auth-form button,
+  .mode-toggle,
+  .guest-btn {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+}

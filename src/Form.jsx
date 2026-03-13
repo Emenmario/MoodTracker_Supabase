@@ -1,89 +1,114 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import {Link} from "react-router-dom"
-import "./Form.css"
-import {Appcontext} from "./App"
-const Form = () => {
-  const {on,setOn}=useContext(Appcontext)
-  const navigate = useNavigate();
-  const [mood, setMood] = React.useState("");
-  const [note, setNote] = React.useState("");
-  const [Message,setMessage]=React.useState("")
-  const [list, setList] = React.useState(() => {
-    const saved = localStorage.getItem("List");
-    return saved ? JSON.parse(saved) : [];
-  });
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import "./Form.css";
+import { Appcontext } from "./App";
+import { supabase } from './supabase';
 
-  function handleSubmit(e) {
+const Form = ({ user }) => {
+  const { on } = useContext(Appcontext);
+  const [mood, setMood] = useState("");
+  const [note, setNote] = useState("");
+  const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const scale = [1,2,3,4,5,6,7,8,9,10];
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (mood === "") {
-      alert('Input can’t be empty');
-      return;
+    if (!mood) return alert("Select a mood first!");
+
+    setLoading(true);
+    const entry = {
+      mood,
+      details: note,
+      score: Number(score),
+      created_at: new Date()
+    };
+
+    if (user) {
+      // Logged-in user -> save to Supabase
+      const { error } = await supabase.from('moods').insert([{ ...entry, user_id: user.id }]);
+      if (error) {
+        console.error(error);
+        alert("Failed to save mood.");
+      } else {
+        setMood("");
+        setNote("");
+        setScore(0);
+        alert("Mood saved successfully!");
+      }
+    } else {
+      // Guest user -> save to localStorage
+      const guestMoods = JSON.parse(localStorage.getItem("guestMoods")) || [];
+      guestMoods.push(entry);
+      localStorage.setItem("guestMoods", JSON.stringify(guestMoods));
+      setMood("");
+      setNote("");
+      setScore(0);
+      alert("Mood saved locally (Guest Mode).");
     }
-
-    const now = new Date();
-    const updated = [
-      ...list,
-      {
-        mood: mood,
-        note: note,
-        date: now.toLocaleDateString(),
-        time: now.toLocaleTimeString(),
-      },
-    ];
- 
-    setList(updated); 
-    setMood("")
-    setNote("")
-   alert("your mood has been saved succesfully")
-    
-  }
-
-  React.useEffect(() => {
-    localStorage.setItem("List", JSON.stringify(list));
-  }, [list]);
+    setLoading(false);
+  };
 
   return (
     <div className='homepage'>
+      <form onSubmit={handleSubmit}>
+        <div style={{ backgroundColor: on && "#e1e1e11c" }} className='form'>
+          <p style={{ display: "block" }}>How are you feeling right now?</p>
 
-      <form  onSubmit={handleSubmit}>
-        <div style={{backgroundColor:on&&"#e1e1e11c"}} className='form'>
-       
-  <p style={{display:"block"}}>How are you feeling right now?</p>
+          <div style={{ display: "flex", gap: "10px" }}>
+            {["Happy", "Sad", "Anxious", "Calm", "Angry"].map(type => (
+              <React.Fragment key={type}>
+                <input
+                  type="radio"
+                  id={type}
+                  name="feels"
+                  value={type}
+                  onClick={(e) => setMood(e.target.value)}
+                />
+                <label style={{ color: on ? "black" : "white" }} htmlFor={type}>{type}</label>
+              </React.Fragment>
+            ))}
+          </div>
 
-  <div style={{display:"flex",gap:"10px"}}>
-      <input 
-       onClick={(e)=>setMood(e.target.value)} type="radio" id="Happy"  name="feels" value="Happy" />
-      <label style={{color:on?"black":"white"}} htmlFor="Happy">Happy</label>
-      <input 
-       onClick={(e)=>setMood(e.target.value)} type="radio" id="Sad" name="feels" value="Sad" />
-      <label  style={{color:on?"black":"white"}} htmlFor="Sad">Sad</label>
-      <input 
-        onClick={(e)=>setMood(e.target.value)}type="radio" id="Anxious" name="feels" value="Anxious" />
-      <label  style={{color:on?"black":"white"}} htmlFor="Anxious">Anxious</label>
-      <input 
-       onClick={(e)=>setMood(e.target.value)} type="radio" id="Calm" name="feels" value="Calm" />
-      <label  style={{color:on?"black":"white"}} htmlFor="Calm">Calm</label>
-      <input 
-       onClick={(e)=>setMood(e.target.value)} type="radio" id="Angry" name="feels" value="Angry" />
-      <label  style={{color:on?"black":"white"}} htmlFor="Angry">Angry</label>
-  </div>
+          {mood && (
+            <div style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
+              <p>On a scale of 1-10, how {mood} are you?</p>
+              <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
+                {scale.map(num => (
+                  <React.Fragment key={num}>
+                    <input
+                      id={`score-${num}`}
+                      type="radio"
+                      name="score"
+                      value={num}
+                      onClick={(e) => setScore(e.target.value)}
+                    />
+                    <label htmlFor={`score-${num}`}>{num}</label>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className='second'>
-            <label style={{color:on?"black":"white"}} className='add' htmlFor='note'>Add a note (optional)</label>
+            <label style={{ color: on ? "black" : "white" }} className='add' htmlFor='note'>Add a note (optional)</label>
             <textarea
-            style={{boxShadow:"0 4px 15px rgba(0, 0, 0, 0.333)",color:on&&"black"}}
               id="note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
+              style={{ boxShadow: "0 4px 15px rgba(0,0,0,0.333)", color: on ? "black" : "white" }}
             />
           </div>
 
-          <button style={{marginRight:"10px"}} className='button'>Done</button>
-          <Link to="/list" className='b'>mood history-></Link>
+          <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+            <button className='button' disabled={loading}>
+              {loading ? "Saving..." : "Done"}
+            </button>
+            <Link to="/list" className='b'>Mood History →</Link>
+          </div>
         </div>
       </form>
-
     </div>
   );
 };

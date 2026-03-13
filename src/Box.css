@@ -1,0 +1,107 @@
+/* container spacing */
+.box {
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 18px;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(6px);
+}
+
+/* hover effect */
+.box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.45);
+}
+
+/* mood title */
+.box h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* delete button */
+.x {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: none;
+  background: rgba(0,0,0,0.25);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.x:hover {
+  background: rgba(0,0,0,0.45);
+}
+
+/* details section */
+.bruh {
+  margin-top: 10px;
+}
+
+/* details button */
+.bruh button {
+  border: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: fit-content;
+  transition: background 0.2s ease;
+}
+
+.bruh button:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* score + notes */
+.bruh span {
+  font-weight: 500;
+}
+
+.bruh div {
+  margin-top: 8px;
+}
+
+/* notes text */
+.bruh small {
+  opacity: 0.8;
+}
+
+/* date + time */
+.box p {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.box span {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* mobile responsiveness */
+@media (max-width: 600px) {
+  .box {
+    margin: 15px 10px;
+    padding: 16px;
+  }
+
+  .box h1 {
+    font-size: 1.5rem;
+  }
+
+  .bruh button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+}
