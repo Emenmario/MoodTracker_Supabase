@@ -5,6 +5,7 @@ import { Appcontext } from "./App";
 import { supabase } from './supabase';
 
 const Form = ({ user }) => {
+
   const { on } = useContext(Appcontext);
   const [mood, setMood] = useState("");
   const [note, setNote] = useState("");
@@ -51,6 +52,7 @@ const Form = ({ user }) => {
   };
 
   return (
+    
     <div className='homepage'>
       <form onSubmit={handleSubmit}>
         <div style={{ backgroundColor: on && "#e1e1e11c" }} className='form'>
