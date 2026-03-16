@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { supabase } from './supabase';
 import { useNavigate } from 'react-router-dom';
 import { Appcontext } from './App';
+import myLogo from './assets/logoo.png';
 import './Auth.css';
 
 const Auth = () => {
@@ -66,7 +67,7 @@ const Auth = () => {
     <div className='total'>
       
       <div className="auth-container">
-        <img style={{width:"300px",height:"auto"}} src="../src/assets/logoo.png" alt="Logo" />
+        <img style={{width:"300px",height:"auto"}} src={myLogo} alt="Logo" />
         
         <h3>{mode === "login" ? "Login" : "Sign Up"}</h3>
         <form className="auth-form" onSubmit={handleSubmit}>
