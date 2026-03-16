@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 import Auth from "./Auth";
 import Protected from "./Protected";
 import { supabase } from './supabase';
-import "./app.css";
+import "./App.css";
 
 export const Appcontext = createContext();
 
