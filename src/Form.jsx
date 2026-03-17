@@ -27,7 +27,6 @@ const Form = ({ user }) => {
     };
 
     if (user) {
-      // Logged-in user -> save to Supabase
       const { error } = await supabase.from('moods').insert([{ ...entry, user_id: user.id }]);
       if (error) {
         console.error(error);
@@ -39,7 +38,6 @@ const Form = ({ user }) => {
         alert("Mood saved successfully!");
       }
     } else {
-      // Guest user -> save to localStorage
       const guestMoods = JSON.parse(localStorage.getItem("guestMoods")) || [];
       guestMoods.push(entry);
       localStorage.setItem("guestMoods", JSON.stringify(guestMoods));

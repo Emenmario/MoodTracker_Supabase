@@ -15,7 +15,6 @@ const Statistics = ({ user }) => {
     const fetchMoods = async () => {
       let data = [];
       if (user) {
-        // Logged-in user: fetch from Supabase
         const { data: supabaseData, error } = await supabase
           .from('moods')
           .select('*')
@@ -24,7 +23,6 @@ const Statistics = ({ user }) => {
         if (error) console.error('Error fetching moods:', error);
         else data = supabaseData;
       } else {
-        // Guest mode: fetch from localStorage
         data = JSON.parse(localStorage.getItem('guestMoods')) || [];
       }
       setList(data);

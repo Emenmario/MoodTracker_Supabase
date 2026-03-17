@@ -11,7 +11,6 @@ const List = ({ user }) => {
   const [original, setOriginal] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch moods either from Supabase (logged-in) or localStorage (guest)
   useEffect(() => {
     const fetchMoods = async () => {
       let data = [];
@@ -34,20 +33,17 @@ const List = ({ user }) => {
     fetchMoods();
   }, [user]);
 
-  // Filter moods by type
   function handleFilter(e) {
     const value = e.target.value;
     if (value === "All") setList(original);
     else setList(original.filter(mood => mood.mood === value));
   }
 
-  // Delete a mood
   async function handleDelete(moodId) {
     if (user) {
       const { error } = await supabase.from('moods').delete().eq('id', moodId);
       if (error) console.error("Delete failed:", error);
     } else {
-      // Guest mode: remove from localStorage
       const guestMoods = JSON.parse(localStorage.getItem("guestMoods")) || [];
       const updatedGuestMoods = guestMoods.filter(m => m.id !== moodId);
       localStorage.setItem("guestMoods", JSON.stringify(updatedGuestMoods));
@@ -58,10 +54,9 @@ const List = ({ user }) => {
     setOriginal(updated);
   }
 
-  // Render each mood box
   const rendered = list.map(mood => (
     <Box
-      key={mood.id || `${mood.mood}-${mood.created_at}`} // fallback key for guest moods
+      key={mood.id || `${mood.mood}-${mood.created_at}`} 
       mood={mood}
       handleDelete={() => handleDelete(mood.id)}
     />

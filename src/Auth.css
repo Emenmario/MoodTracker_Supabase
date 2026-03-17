@@ -1,6 +1,4 @@
-/* Auth.css */
 
-/* Reset + background */
 html, body {
   height: 100%;
   margin: 0;
@@ -10,7 +8,6 @@ html, body {
   font-family: "Poppins", sans-serif;
 }
 
-/* Page container (centers everything) */
 .total {
   height: 100vh;
   width: 100%;
@@ -19,7 +16,6 @@ html, body {
   align-items: center;
 }
 
-/* Auth card */
 .auth-container {
   width: 100%;
   max-width: 400px;
@@ -31,7 +27,6 @@ html, body {
   color: #f5f5f5;
 }
 
-/* Heading */
 .auth-container h2 {
   margin-bottom: 25px;
   color: #ffd166;
@@ -39,14 +34,12 @@ html, body {
   font-size: 2rem;
 }
 
-/* Form layout */
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Inputs */
 .auth-form input {
   padding: 12px 15px;
   border-radius: 12px;

@@ -5,7 +5,6 @@ import { Appcontext } from './App';
 const Protected = () => {
   const { session, guest } = useContext(Appcontext);
 
-  // Allow if logged-in or guest
   if (!session && !guest) return <Navigate to="/" />;
 
   return <Outlet />;

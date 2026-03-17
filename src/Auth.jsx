@@ -27,7 +27,6 @@ const Auth = () => {
 
         if (error) throw error;
 
-        // remove guest mode
         localStorage.removeItem("guest");
         setGuest(false);
 
@@ -54,7 +53,6 @@ const Auth = () => {
   };
 
   const handleGuest = async () => {
-    // log out any existing Supabase session
     await supabase.auth.signOut();
 
     localStorage.setItem("guest", "true");
